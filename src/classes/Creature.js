@@ -5,4 +5,8 @@ export default class Creature {
     this.name = name;
 
   }
+
+  moveTo(){
+    
+  }
 }

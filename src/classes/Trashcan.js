@@ -4,6 +4,13 @@ export default class Trashcan {
     this.imgPath = 
     'https://image.shutterstock.com/z/stock-vector-raccoon-character-looking-for-food-in-trash-can-vector-flat-cartoon-illustration-598153841.jpg';
     this.turnsTilFresh = 0;
-  
+  }
+
+  tryYield(){
+
+  }
+
+  freshen(){
+    
   }
 }

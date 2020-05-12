@@ -22,6 +22,8 @@ export default class Game {
     this.adversary = new Adversary(startingLocs[6], 'Chef Chef');
 
     this.grid[this.raccoon.location.y][this.raccoon.location.x] = this.raccoon;
+    this.grid[this.adversary.location.y][this.adversary.location.x] = this.adversary;
+    this.trashCans.forEach((tc) => this.grid[tc.location.y][tc.location.x] = tc);
     
     console.table(this.grid);
   }
@@ -36,6 +38,14 @@ export default class Game {
       }
     }
     return randLocs.map((loc) => new Location(loc[1], loc[0]));
+  }
+
+  handlemove(){
+
+  }
+
+  move(){
+    
   }
 
 

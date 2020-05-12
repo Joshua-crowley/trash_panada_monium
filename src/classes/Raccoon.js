@@ -1,7 +1,7 @@
 import Creature from './Creature';
 export default class Raccoon extends Creature {
   constructor (location, name = 'Meeko') {
-  this.imgPath = 'https://i.pinimg.com/736x/30/d0/10/30d010906a5bfcb12c1e69940753bdca.jpg';
+  const imgPath = 'https://i.pinimg.com/736x/30/d0/10/30d010906a5bfcb12c1e69940753bdca.jpg';
   super(location, imgPath, name);
   this.inventory = {
     bread: null,
@@ -11,5 +11,9 @@ export default class Raccoon extends Creature {
     veggies: null,
     cheese: null,
     };
+  }
+
+  rummage(){
+
   }
 }
