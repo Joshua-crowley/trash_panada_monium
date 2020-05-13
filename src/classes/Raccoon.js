@@ -1,5 +1,4 @@
 import Creature from './Creature';
-import trashCans from './Trashcan';
 
 export default class Raccoon extends Creature {
   constructor (location, name = 'Meeko') {
@@ -16,7 +15,15 @@ export default class Raccoon extends Creature {
   }
 
   rummage(trashCans){
-    const adjacentCans = trashCans.filter(tc => tc.location.isAdjacentTo())
-
+    const adjacentCans = trashCans.filter(tc => 
+      tc.location.isAdjacentTo(this.location)
+    );
+      for (let i = 0; i < adjacentCans.length; i++) {
+        const newItem = adjacentCans[i].tryYield();
+        if (newItem) {
+          this.inventory[newItem.type] = newItem;
+          return;
+        }
+      }
   }
 }
