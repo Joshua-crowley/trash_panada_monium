@@ -1,3 +1,6 @@
+import { getRandEl } from '../utils';
+import Item from './Item';
+
 export default class Trashcan {
   constructor (location, turnsTilFresh){
     this.location = location;
@@ -7,10 +10,29 @@ export default class Trashcan {
   }
 
   tryYield(){
+    if (this.turnsTilFresh) {
+      return null;
+    }
+    const ingredients = {
+      bread: ['barley', 'wheat', 'focaccia'],
+      meat: ['ham', 'turkey', 'gator'],
+      condiment: ['mayo', 'tabasco', 'ketchup'],
+      greens: ['lettuce', 'spinach', 'dolla bills'],
+      veggies: ['tomato', 'carrot', 'onion'],
+      cheese: ['merican cheese', 'swiss', 'chedda']
+    }
+    const randType = getRandEl(object.keys(ingredients));
+    const randIngredient = getRandEl(ingredients[randType]);
+    const newItem = new Item(randType, randIngredient);
 
+    this.turnsTilFresh = 10;
+
+    return newItem;
   }
 
   freshen(){
-    
+    if (this.turnsTilFresh !== 0) {
+       this.turnsTilFresh--;
+    }
   }
 }

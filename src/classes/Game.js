@@ -44,8 +44,18 @@ export default class Game {
 
   }
 
-  move(){
-    
+  moveTo(creature, loc){
+    if(!this.isOccupied(loc)){
+      // update grid
+      this.grid[creature.location.y][creature.location.x] = null;
+      this.grid[loc.y][loc.x] = creature;
+      // update creature
+      creature.updateLocation(loc);
+    }
+  }
+
+  isOccupied(loc){
+   return !!this.grid[loc.y][loc.x];
   }
 
 

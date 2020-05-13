@@ -6,7 +6,9 @@ export default class Creature {
 
   }
 
-  moveTo(){
+  updateLocation(loc) {
+    this.location = loc;
+
     
   }
 }

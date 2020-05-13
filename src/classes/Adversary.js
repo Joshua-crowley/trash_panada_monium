@@ -14,8 +14,12 @@ export default class Adversary extends Creature {
 
   }
 
-  move(){
+  takeTurn(){
     
+  }
+
+  execRandMove(){
+
   }
 
 }
