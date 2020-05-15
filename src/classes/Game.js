@@ -71,6 +71,7 @@ export default class Game {
     while (advMoves <= 2) {
       if (this.adversary.isNextToRaccoon(this.raccoon)) {
         this.adversary.robRaccoon(this.raccoon);
+        break;
       } else if(advmoves < 2) {
         const newMove = this.genRandAdversaryMove();
         this.moveTo(this.adversary, newMove);
