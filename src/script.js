@@ -1,23 +1,23 @@
 import Game from './classes/Game';
 
-
+const myGame = new Game('game');
 
 document.body.addEventListener('keydown', (event) => {
   switch (event.keyCode) {
     case 37:
-      Game.handleMove('left');
+      myGame.handleMove('left');
       console.log('Left key');
       break;
     case 38:
-      Game.handleMove('up');
+      myGame.handleMove('up');
       console.log('Up key');
       break;
     case 39:
-      Game.handleMove('right');
+      myGame.handleMove('right');
       console.log('Right key');
       break;
     case 40:
-      Game.handleMove('down');
+      myGame.handleMove('down');
       console.log('Down key');
       break; 
     default:
@@ -25,4 +25,3 @@ document.body.addEventListener('keydown', (event) => {
   }
 });
 
-const myGame = new Game('game');

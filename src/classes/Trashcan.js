@@ -15,11 +15,11 @@ export default class Trashcan {
     }
     const ingredients = {
       bread: ['barley', 'wheat', 'focaccia'],
-      meat: ['ham', 'turkey', 'gator'],
+      meat: ['ham', 'turkey', 'chickem'],
       condiment: ['mayo', 'tabasco', 'ketchup'],
       greens: ['lettuce', 'spinach', 'dolla bills'],
-      veggies: ['tomato', 'carrot', 'onion'],
-      cheese: ['merican cheese', 'swiss', 'chedda']
+      veggies: ['tomato', 'sour cucumbers', 'onion'],
+      cheese: ['merican', 'swiss', 'chedda']
     }
     const randType = getRandEl(object.keys(ingredients));
     const randIngredient = getRandEl(ingredients[randType]);

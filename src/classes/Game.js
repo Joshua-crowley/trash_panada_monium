@@ -1,4 +1,4 @@
-import { genRandNum } from '../utils';
+import { genRandNum, getRandEl } from '../utils';
 import Location from './Location';
 import Raccoon from './Raccoon';
 import Adversary from './Adversary';
@@ -40,7 +40,26 @@ export default class Game {
     return randLocs.map((loc) => new Location(loc[1], loc[0]));
   }
 
-  handlemove(){
+  handleMove(direction){
+    // Raccoon needs to move
+    if (direction === 'left') {
+      moveTo(this.raccoon, this.raccoon.location.x - 1);
+
+    } else if (direction === 'up') {
+      moveTo(this.raccoon, this.raccoon.location.y - 1);
+
+    } else if (direction === 'right') {
+      moveTo(this.raccoon, this.raccoon.location.x + 1);
+
+    } else if (direction === 'down') {
+      moveTo(this.raccoon, this.raccoon.location.y + 1);
+
+    }
+
+    // Call the functions needed for the game to run.
+    this.raccoon.rummage();
+    this.trashCans.forEach((tc) => tc.freshen());
+    this.adversary.takeTurn();
 
   }
 
@@ -52,6 +71,35 @@ export default class Game {
       // update creature
       creature.updateLocation(loc);
     }
+  }
+
+  genRandAdversaryMove() {
+    const validMoves = this.getValidAdversaryMoves();
+    const randMove = getRandEl(validMoves);
+    return randMove;
+  }
+
+  getValidAdversaryMoves() {
+    const validMoves = [];
+    const {x, y} = this.adversary.location;
+
+    for (let rowIdx = y - 1; rowIdx <= y + 1; y++) {
+      for (let colIdx = x - 1; colIdx <= x + 1; x++) {
+        if (!this.isValidMove(new Location(colIdx, rowIdx))) {
+        validMoves.push(new Location(colIdx, rowIdx));
+        }
+      }
+    }
+
+    return validMoves;
+  }
+
+  isValidMove(loc){
+    return this.isOnBoard(loc) && !this.isOccupied(loc);
+  }
+
+  isOnBoard(){
+    return loc.x >= 0 && loc.x <= 7 && loc.y >= 0 && loc.y <= 7;
   }
 
   isOccupied(loc){
