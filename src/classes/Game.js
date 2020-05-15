@@ -42,25 +42,44 @@ export default class Game {
 
   handleMove(direction){
     // Raccoon needs to move
-    if (direction === 'left') {
-      moveTo(this.raccoon, this.raccoon.location.x - 1);
-
-    } else if (direction === 'up') {
-      moveTo(this.raccoon, this.raccoon.location.y - 1);
-
-    } else if (direction === 'right') {
-      moveTo(this.raccoon, this.raccoon.location.x + 1);
-
-    } else if (direction === 'down') {
-      moveTo(this.raccoon, this.raccoon.location.y + 1);
-
+    let newLoc;
+    const {x,y} = this.raccoon.location;
+    switch(dir){
+      case 'left':
+        newLoc = new Location(x-1,y);
+        break;
+      case 'up':
+        newLoc = new Location(x,y-1);
+        break;
+      case 'right':
+        newLoc = new Location(x+1,y);
+        break;
+      case 'down':
+        newLoc = new Location(x,y+1);
+        break;
+      default:
+        throw('bad direction, must be one of (up, down, left, right)');
+      
     }
 
-    // Call the functions needed for the game to run.
-    this.raccoon.rummage();
-    this.trashCans.forEach((tc) => tc.freshen());
-    this.adversary.takeTurn();
+    if (this.isValidMove(newLoc)){
+      this.moveTo(this.raccoon, newLoc);
+      this.raccoon.rummage(this.trashCans);
+    }
 
+    let advMoves = 0;
+    while (advMoves <= 2) {
+      if (this.adversary.isNextToRaccoon(this.raccoon)) {
+        this.adversary.robRaccoon(this.raccoon);
+      } else if(advmoves < 2) {
+        const newMove = this.genRandAdversaryMove();
+        this.moveTo(this.adversary, newMove);
+      }
+      advMoves++;
+    }
+
+  
+    this.trashCans.forEach(tc => tc.freshen());
   }
 
   moveTo(creature, loc){

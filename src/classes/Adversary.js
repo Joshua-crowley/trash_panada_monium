@@ -24,9 +24,4 @@ export default class Adversary extends Creature {
       alert(message);
     }
   }
-
-  takeTurn(){
-    moveTo(this.Adversary, getRandEl(this.grid)); 
-  }
-
 }
