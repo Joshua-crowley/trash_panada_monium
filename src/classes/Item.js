@@ -8,7 +8,7 @@ export default class Item {
       'veggies',
       'cheese'
     ]
-    if(!(type in validTypes)) {
+    if(!validTypes.includes(type)) {
       throw ('Invalid Type:', type);
     }
     this.type = type;

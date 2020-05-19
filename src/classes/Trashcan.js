@@ -21,7 +21,7 @@ export default class Trashcan {
       veggies: ['tomato', 'sour cucumbers', 'onion'],
       cheese: ['merican', 'swiss', 'chedda']
     }
-    const randType = getRandEl(object.keys(ingredients));
+    const randType = getRandEl(Object.keys(ingredients));
     const randIngredient = getRandEl(ingredients[randType]);
     const newItem = new Item(randType, randIngredient);
 
