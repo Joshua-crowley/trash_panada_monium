@@ -9,7 +9,6 @@ export default class Game {
     this.gameld = gameld;
     this.status = 'new';
     this.turnsRemaining = 100;
-    this.populateGrid();
     this.grid = Array(8)
       .fill(null)
       .map((el) => Array(8).fill(null));
@@ -27,6 +26,7 @@ export default class Game {
     this.trashCans.forEach((tc) => this.grid[tc.location.y][tc.location.x] = tc);
     
     console.table(this.grid);
+    this.populateGrid();
   }
 
   genStartLocs() {
@@ -106,6 +106,7 @@ export default class Game {
       alert(`${this.raccoon.name} the raccoon will never get his panini, or make it to cooking school`)
       this.status = 'lost';
     }
+    this.populateGrid();
   }
 
   moveTo(creature, loc){
@@ -164,14 +165,15 @@ export default class Game {
         const cell = document.createElement('div');
         cell.classList.add('cell');
         cell.id = `${rowIdx}${colIdx}`;
-        // if (this.isOccupied(new Location(colIdx,rowIdx))) {
-        //   const img = document.createElement('img');
-        //   img.src = this.grid[rowIdx][colIdx].imgPath;
-        //   cell.appendChild(img);
-        // }
+        if (this.isOccupied(new Location(colIdx,rowIdx))) {
+          const img = document.createElement('img');
+          img.src = this.grid[rowIdx][colIdx].imgPath;
+          cell.appendChild(img);
+        }
         row.appendChild(cell);
       }
       gridDOM.appendChild(row);
     }
   }
+
 }
